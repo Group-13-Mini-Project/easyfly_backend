@@ -51,7 +51,7 @@ class Ticket(models.Model):
 
 
 class User(models.Model):
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_image = models.ImageField(upload_to="profile_images", blank=True)
     tickets = models.ManyToManyField(Ticket, blank=True)
 
