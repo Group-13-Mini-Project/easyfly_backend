@@ -5,6 +5,9 @@ from . import views
 urlpatterns = [
     path("flights/", views.flights, name='flights'),
 
+    #url to logout should be added here@janprince
+
+
     # api endpoint for obtaining authentication token for a user
     path("api-token-auth/", auth_views.obtain_auth_token),
 ]

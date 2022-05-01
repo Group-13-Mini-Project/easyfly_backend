@@ -6,6 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from django.views.decorators.csrf import csrf_exempt
 from .serializers import *
 from django.http import JsonResponse
+from django.contrib.auth import logout
 
 
 # Create your views here.
@@ -18,3 +19,9 @@ def flights(request):
 
 
 
+@api_view(['GET', ])
+@permission_classes((IsAuthenticated, ))
+def logout(request):
+    request.user.auth_token.delete()
+    logout(request)
+    #redirect should be added after this line @janprince
