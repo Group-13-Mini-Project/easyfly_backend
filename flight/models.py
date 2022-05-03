@@ -18,6 +18,9 @@ class City(models.Model):
     city_code = models.CharField(max_length=5)
     city_name = models.CharField(max_length=100)
 
+    def __str__(self):
+        return f"{self.city_name}"
+
 
 class Airport(models.Model):
     name = models.CharField(max_length=100)
@@ -25,10 +28,16 @@ class Airport(models.Model):
     terminal = models.CharField(max_length=50)
     gate = models.CharField(max_length=50)
 
+    def __str__(self):
+        return f"{self.name}"
+
 
 class Airplane(models.Model):
     name = models.CharField(max_length=50)
     number_of_seats = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.name}"
 
 
 class Flight(models.Model):
@@ -43,6 +52,9 @@ class Flight(models.Model):
     cost = models.DecimalField(max_digits=10, decimal_places=2)
     departure_date = models.DateTimeField()
     return_date = models.DateTimeField(blank=True)
+
+    def __str__(self):
+        return f"{self.source} to {self.destination}"
 
 
 class Ticket(models.Model):
