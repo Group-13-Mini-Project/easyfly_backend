@@ -47,7 +47,18 @@ def flights(request):
     all_flights = Flight.objects.all()
     flights_serializer = FlightSerializer(all_flights, many=True)
     return JsonResponse(flights_serializer.data, safe=False)
-      
+
+@api_view(['GET',])
+@permission_classes((IsAuthenticated, ))
+def get_user_profile(request):
+    response = {}
+    user  = request.user
+    user_info = User.objects.filter(user=user)
+    #print(user_info)
+    response['user_info'] = user_info
+    return response
+
+
 @api_view(['GET', ])
 @permission_classes((IsAuthenticated, ))
 def logout(request):

@@ -7,6 +7,6 @@ class FlightSerializer(serializers.ModelSerializer):
         model = Flight
         fields = ["id", 'source', 'destination', 'airplane', 'cost',
                   'flight_type', 'flight_class',
-                  "duration", 'departure_date',
+                  "duration", "destination"
                   "return_date"
                   ]
