@@ -5,7 +5,7 @@ from . import views
 urlpatterns = [
 
     #path to home
-    path('', views.index, name="home"),
+    #path('', views.index, name="home"),
     # login endpoint
     path('login/', views.login_user, name="login"),
     path("flights/", views.flights, name='flights'),

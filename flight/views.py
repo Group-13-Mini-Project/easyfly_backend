@@ -41,20 +41,17 @@ def login_user(request):
     else:
         raise ValidationError({"400": f'Account doesnt exist'})
 
-
-
 @api_view(['GET',])
 @permission_classes((IsAuthenticated, ))
 def flights(request):
     all_flights = Flight.objects.all()
     flights_serializer = FlightSerializer(all_flights, many=True)
     return JsonResponse(flights_serializer.data, safe=False)
-
-
-
+      
 @api_view(['GET', ])
 @permission_classes((IsAuthenticated, ))
 def logout(request):
     request.user.auth_token.delete()
     logout(request)
     #redirect should be added after this line @janprince
+
