@@ -62,7 +62,7 @@ class Ticket(models.Model):
     flight = models.OneToOneField(Flight, on_delete=models.CASCADE, related_name='tickets')
 
 
-class User(models.Model):
+class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_image = models.ImageField(upload_to="profile_images", blank=True)
     tickets = models.ManyToManyField(Ticket, blank=True)
