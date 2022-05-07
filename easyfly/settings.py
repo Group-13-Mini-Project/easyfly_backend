@@ -137,6 +137,10 @@ REST_FRAMEWORK = {
     ],
 }
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://easy-fly.herokuapp.com'
+]
+
 # Django -Heroku
 import django_heroku
 django_heroku.settings(locals())
