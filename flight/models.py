@@ -60,7 +60,7 @@ class Flight(models.Model):
 def rand_code():
     import random
     tickets = Ticket.objects.all()
-    codes = [ticket.code for ticket in tickets]
+    codes = [ticket.ticket_code for ticket in tickets]
     t = True
     while t:
         r = random.randint(100, 999)

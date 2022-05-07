@@ -97,7 +97,8 @@ def book_flight(request):
         user = request.user
         ticket = Ticket(user=user, flight=flight)
         ticket.save()
-        response = {"status": "successful", "data":{"ticket_code": ticket.code}}
+        print(user.tickets.all())
+        response = {"status": "successful", "data":{"ticket_code": ticket.ticket_code}}
         return JsonResponse(response)
     else:
         response = {"status": "error", "data": {"error_code": "payment required"}}
