@@ -10,3 +10,11 @@ class FlightSerializer(serializers.ModelSerializer):
                   "duration", 'departure_date',
                   "return_date"
                   ]
+
+
+class CitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = City
+        fields = [
+            "city_name", "city_code"
+        ]

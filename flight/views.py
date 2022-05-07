@@ -84,3 +84,29 @@ def logout(request):
     logout(request)
 
 
+@api_view(['GET', ])
+@permission_classes((IsAuthenticated, ))
+def book_flight(request):
+    """
+    ......./book_flight?flight_id=2&payment_status="successful"
+    """
+    flight_id = request.GET['flight_id']
+    payment_status = request.GET['payment_status']
+    if payment_status == "successful":
+        flight = Flight.objects.get(id=flight_id)
+        user = request.user
+        ticket = Ticket(user=user, flight=flight)
+        ticket.save()
+        response = {"status": "successful", "data":{"ticket_code": ticket.code}}
+        return JsonResponse(response)
+    else:
+        response = {"status": "error", "data": {"error_code": "payment required"}}
+        return JsonResponse(response)
+
+
+def list_cities(request):
+    all_cities = City.objects.all()
+    city_serializer = CitySerializer(all_cities, many=True)
+    return JsonResponse(city_serializer.data, safe=False)
+
+
