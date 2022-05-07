@@ -1,10 +1,7 @@
-from django.shortcuts import render
 from rest_framework.decorators import api_view
-from rest_framework.response import Response
+# from rest_framework.response import Response
 from django.http import JsonResponse,HttpResponse
 from django.contrib.auth import authenticate, login
-from rest_framework.authtoken.models import Token
-from .models import *
 from .serializers import *
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -105,6 +102,7 @@ def book_flight(request):
         return JsonResponse(response)
 
 
+@api_view(['GET', ])
 def list_cities(request):
     all_cities = City.objects.all()
     city_serializer = CitySerializer(all_cities, many=True)
