@@ -11,7 +11,7 @@ token = p.json()["token"]
 
 
 # a request with the authentication token
-r = requests.get("http://127.0.0.1:8000/book-flight/", headers={"Authorization": f"Token {token}"}, params={'flight_id': 1, 'payment_status': 'successful'})
+r = requests.get("http://127.0.0.1:8000/book-flight/", params={'flight_id': 1, 'payment_status': 'successful', "auth_token": token})
 
 print(r.status_code)
 print(r.text)
