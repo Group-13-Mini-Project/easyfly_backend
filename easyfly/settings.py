@@ -1,3 +1,4 @@
+
 """
 Django settings for easyfly project.
 
@@ -9,7 +10,6 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
 from pathlib import Path
 import os
 
@@ -133,6 +133,6 @@ MEDIA_URL = '/media/'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',  # <-- And here
+        'flight.utils.TokenAuthSupportQueryString',  # <-- And here
     ],
 }

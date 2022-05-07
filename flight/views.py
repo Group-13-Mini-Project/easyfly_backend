@@ -103,12 +103,20 @@ def book_flight(request):
         flight = Flight.objects.get(id=flight_id)
         user = request.user
         ticket = Ticket(user=user, flight=flight)
-        ticket.save()
-        print(user.tickets.all())
+        user_tickets = user.tickets.all()
+        user_flights = [ticket.flight for ticket in user_tickets]
+        if flight not in user_flights:
+            ticket.save()
+            print(user.tickets.all())
+        else:
+            print(user.tickets.all())
+            response = {"status": "error", "data": {"error_detail": f"Flight already booked for {user.username}"}}
+            return JsonResponse(response)
+
         response = {"status": "successful", "data":{"ticket_code": ticket.ticket_code}}
         return JsonResponse(response)
     else:
-        response = {"status": "error", "data": {"error_code": "payment required"}}
+        response = {"status": "error", "data": {"error_detail": "payment required"}}
         return JsonResponse(response)
 
 
