@@ -136,3 +136,8 @@ REST_FRAMEWORK = {
         'flight.utils.TokenAuthSupportQueryString',  # <-- And here
     ],
 }
+
+# Django -Heroku
+import django_heroku
+django_heroku.settings(locals())
+
