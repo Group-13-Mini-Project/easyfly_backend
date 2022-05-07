@@ -57,13 +57,24 @@ class Flight(models.Model):
         return f"{self.source} to {self.destination}"
 
 
+def rand_code():
+    import random
+    tickets = Ticket.objects.all()
+    codes = [ticket.ticket_code for ticket in tickets]
+    t = True
+    while t:
+        r = random.randint(100, 999)
+        if f"DH{r}" not in codes:
+            t = False
+    return f"DH{r}"
+
+
 class Ticket(models.Model):
-    ticket_code = models.CharField(max_length=20)
-    flight = models.OneToOneField(Flight, on_delete=models.CASCADE, related_name='tickets')
+    ticket_code = models.CharField(max_length=20, unique=True, default=rand_code)
+    user = models.ForeignKey(User, related_name='tickets', on_delete=models.RESTRICT, null=True)
+    flight = models.ForeignKey(Flight, on_delete=models.CASCADE, related_name='tickets')
 
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_image = models.ImageField(upload_to="profile_images", blank=True)
-    tickets = models.ManyToManyField(Ticket, blank=True)
-

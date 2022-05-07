@@ -1,10 +1,7 @@
-from django.shortcuts import render
 from rest_framework.decorators import api_view
-from rest_framework.response import Response
+# from rest_framework.response import Response
 from django.http import JsonResponse,HttpResponse
 from django.contrib.auth import authenticate, login
-from rest_framework.authtoken.models import Token
-from .models import *
 from .serializers import *
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -82,5 +79,33 @@ def flights(request):
 def logout(request):
     request.user.auth_token.delete()
     logout(request)
+
+
+@api_view(['GET', ])
+@permission_classes((IsAuthenticated, ))
+def book_flight(request):
+    """
+    ......./book_flight?flight_id=2&payment_status="successful"
+    """
+    flight_id = request.GET['flight_id']
+    payment_status = request.GET['payment_status']
+    if payment_status == "successful":
+        flight = Flight.objects.get(id=flight_id)
+        user = request.user
+        ticket = Ticket(user=user, flight=flight)
+        ticket.save()
+        print(user.tickets.all())
+        response = {"status": "successful", "data":{"ticket_code": ticket.ticket_code}}
+        return JsonResponse(response)
+    else:
+        response = {"status": "error", "data": {"error_code": "payment required"}}
+        return JsonResponse(response)
+
+
+@api_view(['GET', ])
+def list_cities(request):
+    all_cities = City.objects.all()
+    city_serializer = CitySerializer(all_cities, many=True)
+    return JsonResponse(city_serializer.data, safe=False)
 
 
