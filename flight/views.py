@@ -99,7 +99,10 @@ def book_flight(request):
     """
     flight_id = request.GET['flight_id']
     payment_status = request.GET['payment_status']
+    print(flight_id)
+    print(payment_status)
     if payment_status == "successful":
+        print("hurreyy")
         flight = Flight.objects.get(id=flight_id)
         user = request.user
         ticket = Ticket(user=user, flight=flight)
