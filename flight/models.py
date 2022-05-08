@@ -44,9 +44,9 @@ class Flight(models.Model):
     FLIGHT_TYPES = [('OW', 'One Way'), ('RT', 'Round Trip')]
     FLIGHT_CLASS = [('FC', 'First Class'), ('BC', 'Business Class'), ('E', 'Economy')]
     airplane = models.ForeignKey(Airplane, on_delete=models.RESTRICT, related_name="flights")
-    source = models.ForeignKey(Airport, on_delete=models.RESTRICT, related_name="moving_flights")
-    destination = models.ForeignKey(Airport, on_delete=models.RESTRICT, related_name="arriving_flights")
-    duration = models.IntegerField()
+    source = models.ForeignKey(City, on_delete=models.RESTRICT, related_name="moving_flights")
+    destination = models.ForeignKey(City, on_delete=models.RESTRICT, related_name="arriving_flights")
+    duration = models.DecimalField(decimal_places=2, max_digits=10)
     flight_type = models.CharField(max_length=2, choices=FLIGHT_TYPES)
     flight_class = models.CharField(max_length=2, choices=FLIGHT_CLASS)
     cost = models.DecimalField(max_digits=10, decimal_places=2)
