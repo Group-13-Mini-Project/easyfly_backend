@@ -3,18 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <title>API Docs.</title>
+
+  <style>
+      body{
+          padding: 20px 100px;
+
+      }
+    h2, h3{
+        font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+        margin-top: 40px;
+    }
+    code {
+        font-family: monospace;
+        background: #e0dcdc;
+        word-wrap: break-word;
+      box-decoration-break: clone;
+      padding: .1rem .3rem .2rem;
+      border-radius: .2rem;
+    }
+
+  </style>
 </head>
   <body>
     <div>
       <h2>API Documentation </h2>
       <hr>
-      <h3>1. Getting a list of cities</h3>
-      <code><strong>/cities</strong></code> <br>
+      <h3>1. Get a list of cities</h3>
+      <code><strong>/cities</strong></code><br>
+      <p>
+        Request method: GET <br>
+        Returns a list of city objects
+      </p>
       <code>http://easy-fly.herokuapp.com/cities/</code>
     </div>
 
     <div>
-      <h3>2. Sign up a user</h3>
+      <h3>2. Sign up</h3>
       <code><strong>/signup</strong></code> <br>
       <p>
         Request method: POST <br>
@@ -36,7 +60,7 @@
     </div>
 
     <div>
-      <h3>4. List All Available Flights</h3>
+      <h3>4. Get All Available Flights</h3>
       <code><strong>/login/</strong></code> <br>
       <p>
         Request method: GET <br>
@@ -44,6 +68,7 @@
       </p>
       <code>http://easy-fly.herokuapp.com/flights/?auth_token=user_token</code>
     </div>
+
 
     <div>
       <h3>0. Book a flight</h3>
