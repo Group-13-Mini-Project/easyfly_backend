@@ -7,6 +7,11 @@ from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import logout
+from django.shortcuts import render
+
+
+def index(request):
+    return render(request, "flight/index.html")
 
 
 @api_view(['POST'])
@@ -31,7 +36,7 @@ def login_user(request):
         return JsonResponse(response)
     else:
         print("wow")
-        return JsonResponse({"message": "message does not exist"})
+        return JsonResponse({"message": "User does not exist"})
 
 
 
